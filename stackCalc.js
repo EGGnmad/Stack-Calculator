@@ -81,18 +81,19 @@ function toS(string){
     if(num !== ""){
         stack.push(num);
         num = "";
-
-        let length = stack_token.length;
-        for(let i = 0; i < length; i++){
-            let token = stack_token.pop();
-            if(token === "(")
-                break;
-            stack.push(token);
-        }
     }
+
+    let length = stack_token.length;
+    for(let i = 0; i < length; i++){
+        let token = stack_token.pop();
+        if(token === "(")
+            break;
+        stack.push(token);
+    }
+
 
     return stack;
 }
 
-console.log(eval("(3 + (1 + 3 *2 ) * 2) + 1"));
+console.log(eval("(3 + (1 + 3 * 2) * 2) * (2 + 1)"));
 
