@@ -5,8 +5,8 @@ const operator_level = {
     "*": 1,
     "/": 1,
     "%": 1,
-    "(": 1,
-    ")": 1
+    "(": 0,
+    ")": 0
 };
 
 function eval(string){
@@ -41,7 +41,7 @@ function calc(stack){
         else
             stack_num.push(i);
     });
-    return stack_num[0]
+    return stack_num[0];
 }
 
 function toS(string){
@@ -52,34 +52,46 @@ function toS(string){
     let num = "";
 
     for(let i = 0; i < string.length; i++){
+
         if(string[i] === "*" || string[i] === "/" || string[i] === "+" || string[i] === "-" || string[i] === "%" || string[i] === "(" || string[i] === ")"){
-            stack.push(num);
-            num = "";
-            if(operator_level[stack_token[stack_token.length -1]] > operator_level[string[i]]){
-                for(let i = 0; i <= stack_token.length; i++){
-                    let num = stack_token.pop();
-                    stack.push(num);
+            if(num !== ""){
+                stack.push(num);
+                num = "";
+            }
+
+            if(operator_level[stack_token[stack_token.length -1]] > operator_level[string[i]] && string[i] !== "(" || string[i] === ")"){
+                let length = stack_token.length;
+                for(let i = 0; i < length; i++){
+                    let token = stack_token.pop();
+                    if(token === "(")
+                        break;
+                    stack.push(token);
                 }
             }
-            stack_token.push(string[i]);
-        
+
+            if(string[i] !== ")")
+                stack_token.push(string[i]);
         }
+
         else{
             num += string[i];
         }
+    }
 
-        if(i == string.length -1){
-            stack.push(num);
-            console.log(stack_token.length);
-            for(let i = 0; i <= stack_token.length; i++){
-                let num = stack_token.pop();
-                stack.push(num);
-            }
+    if(num !== ""){
+        stack.push(num);
+        num = "";
+
+        let length = stack_token.length;
+        for(let i = 0; i < length; i++){
+            let token = stack_token.pop();
+            if(token === "(")
+                break;
+            stack.push(token);
         }
     }
-    
-    console.log(stack, stack_token)
+
     return stack;
 }
 
-console.log(eval("3 + 4 * 5 + 1 * 5"));
+console.log(eval("(3 + (1 + 3 *2 ) * 2) + 1"));
