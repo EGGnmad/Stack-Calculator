@@ -95,5 +95,5 @@ function toS(string){
     return stack;
 }
 
-console.log(eval("(3 + (1 + 3 * 2) * 2) * (2 + 1)"));
+console.log(eval("(3 + (1 + 3 * 2) * 2) * (2 + 1) + 10"));
 
