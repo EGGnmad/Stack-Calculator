@@ -1,0 +1,22 @@
+{
+  "name": "stackcalculator",
+  "version": "1.0.0",
+  "description": "stack calculator for studying",
+  "main": "stackCalc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EGGnmad/Stack-Calculator.git"
+  },
+  "keywords": [
+    "stack"
+  ],
+  "author": "EGGnmad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EGGnmad/Stack-Calculator/issues"
+  },
+  "homepage": "https://github.com/EGGnmad/Stack-Calculator#readme"
+}
